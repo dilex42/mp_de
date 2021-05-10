@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  script:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=mp_de
+      - POSTGRES_USER=mp_de
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - mp-de-db-data:/var/lib/postgresql/data/pgdata
+volumes:
+  mp-de-db-data:
